@@ -11,24 +11,60 @@ let taskList = [];
 
 addButton.addEventListener("click",addTask);
 
-function addTask(){
-    let taskContent = taskInput.value;
-    taskList.push(taskContent);
+function addTask(){ 
+    let task = {
+        id:randomIDGenerate(),
+        taskContent:taskInput.value,
+        isComplete:false,
+
+    }
+    taskList.push(task);
+    // console.log(task);
     render();
 }
 
 function render(){
     let resultHtml = ``;
     for(let i=0;i<taskList.length;i++){
-        resultHtml += `<div class="task">
-                <div>${taskList[i]}</div>
-                <div>
-                    <button>Check</button>
-                    <button>Delete</button>
+        if(taskList[i].isComplete == true){
+            resultHtml += `<div class="task task-done"><span>${taskList[i].taskContent}</span>
+                <div  class="button-area">
+                    <button onclick="toggleComplete('${taskList[i].id}')"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                    <button onclick="deleteTask('${taskList[i].id}')"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
                 </div>`;
+        }else{resultHtml += `<div class="task"><span>${taskList[i].taskContent}</span>
+            <div class="button-area">
+                <button onclick="toggleComplete('${taskList[i].id}')"><i class="fa-solid fa-check"></i></button>
+                <button onclick="deleteTask('${taskList[i].id}')"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+            </div>`;}
+        
     }
     document.getElementById("task-board").innerHTML = resultHtml;
 }
 
+function toggleComplete(id){
+    console.log("id:",id);
+    for(let i=0; i<taskList.length; i++){
+        if(taskList[i].id == id){
+            taskList[i].isComplete= !taskList[i].isComplete;
+            break;
+        }
+    }
+    render();
+}
+
+function deleteTask(id){
+    for (let i = 0; i < taskList.length; i++) {
+        if (taskList[i].id == id) {
+          taskList.splice(i, 1);
+          break;
+        }
+}render();
+}
+
+function randomIDGenerate(){
+    return '_' + Math.random().toString(36).substr(2, 9);
+}
 // console.log(addButton);
