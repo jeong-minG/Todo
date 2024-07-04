@@ -22,9 +22,11 @@ taskInput.addEventListener("focus", function() {
     taskInput.value = "";
 });
 
-for(let i=1; i<tabs.length;i++){
+for(let i=0; i<tabs.length;i++){
     tabs[i].addEventListener("click", function(event) {
-        filter(event);
+        filter(event); 
+        buttonOff();
+        tabs[i].classList.add("active");
     });
 }
 
@@ -52,13 +54,14 @@ function render(){
     //all taskList
     //ongoing, done filterList
     let list=[];
-    if(mode === "all"){
+    if (mode === "ongoing"){
+        for(let i=0;i<taskList.length;i++){
+            if(taskList[i].isComplete == false){list.push(taskList[i]);} 
+        } 
+    }else if(mode === "done"){list=filterList;
+    } else {
         list = taskList;
-    } else if (mode === "ongoing"){
-        list=filterList;
-    }else if (mode === "done"){
-        list=filterList;
-    }
+    } 
     let resultHtml = ``;
     for(let i=0;i<list.length;i++){
         if(list[i].isComplete == true){
@@ -87,7 +90,7 @@ function toggleComplete(id){
             break;
         }
     }
-    render();
+     filter({ target: { id: mode } });
 }
 
 function deleteTask(id){
@@ -96,7 +99,7 @@ function deleteTask(id){
           taskList.splice(i, 1);
           break;
         }
-}render();
+} filter({ target: { id: mode } });
 }
 
 
@@ -127,6 +130,13 @@ function filter(event){
         render();
     }
 }
+
+function buttonOff(){
+    tabs.forEach((content) => { 
+        content.classList.remove("active");
+      }); 
+}
+
 
 function randomIDGenerate(){
     return '_' + Math.random().toString(36).substr(2, 9);

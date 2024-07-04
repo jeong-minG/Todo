@@ -4,7 +4,7 @@
     font-weight: normal;
     font-style: normal;
 }
-
+ 
 
 body{ 
     font-family: 'GmarketSansMedium';
@@ -20,7 +20,7 @@ body{
 
 .container{
     background-color: white; border-radius: 20px;
-    max-width:800px;
+    max-width:600px;
     height:100%;
     min-height: 95vh;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -30,33 +30,96 @@ body{
     font-weight: 700; text-align: center; padding: 1em 0em;
 }
 
-.task-area{  
+/* .task-area{  
     border: 1px solid lightgrey;
+} */
+ .input-area{position: relative; display: flex; justify-content: space-between;
+    width: 100%; }
+    
+    .input-area input {
+        font-size: 15px;
+        color: #222222;
+        width: 78%;
+        border: none;
+        border-bottom: 1px solid #aaaaaa;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        position: relative;
+        background: none;
+        z-index: 5;
+      } 
+      .input-area input::placeholder { color: #aaaaaa; }
+      .input-area input:focus { outline: none; }
+      
+      .input-area span {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0%;  /* right로만 바꿔주면 오 - 왼 */
+        background-color: #666;
+        width: 0;
+        height: 2px;
+        border-radius: 2px;
+        transition: 0.5s;
+      }
+      
+      .input-area label {
+        position: absolute;
+        color: #aaa;
+        left: 10px;
+        font-size: 20px;
+        bottom: 8px;
+        transition: all .2s;
+      }
+      
+      .input-area input:focus ~ label, .input-area input:valid ~ label {
+        font-size: 16px;
+        bottom: 40px;
+        color: #666;
+        font-weight: bold;
+      }
+      
+      .input-area input:focus ~ span, .input-area input:valid ~ span {
+        width: 78%;
+      }
+
+
+      #add-button{color: #222222;box-shadow: 0px 0px 0px 0px #0123b4;
+        width: 20%;background-color:white ; border: 2px solid #222222; border-radius: 10px;
+      }
+      #add-button:hover { font-size: 1.1em;
+        box-shadow: 0px 0px 0px 3px #0123b4; border: none; font-weight: 900; transition: all 0.2s;
+      }
+       
+.task-tabs{ margin: 15px 0 12px 0;
+    display: grid;
+    grid:auto/repeat(3, 1fr);
+    justify-content: space-around;
+    align-items: center;
+    column-gap: 20px; 
 }
 
-
-.task-tabs{
-    display: flex;
-    border-bottom: 1px solid lightgrey;
-    position: relative;
-
-}
-
-.task-tabs div{
+.task-tabs div{background-color: rgb(240, 240, 240); border-radius: 10px;
     cursor: pointer;
-    padding: 1em;
+    padding: 1em;text-align: center;box-shadow: 0px 0px 0px 0px #0123b4;
     font-weight: bold; 
+}
+.task-tabs div:hover:not(.active){box-shadow: 0px 0px 0px 3px #0123b4; border: none; font-weight: 900; transition: all 0.2s;
+}
+
+div.active{
+    background-color:#0123b4 ; color: white; font-weight: 900;
 }
 
 .task{
     display: flex; justify-content: space-between;
-    width: 100%;
-}
+    width: 100%;border-bottom:1px solid #aaaaaa ;
+} 
 .task span{
     padding: 1em;
 }
 .task-done{text-decoration: line-through; background-color: #ccc;}
-
+/* 
 #under-line{
     height: 4px;
     background-color: pink;
@@ -65,7 +128,7 @@ body{
     left: 0px;
     top: 52px; 
     padding: 0;
-}
+} */
 
 /* 
 #task-board{
@@ -73,7 +136,7 @@ body{
     overflow-y: auto;
 } */
 .button-area{display: flex;} 
-.button-area button{background: white; height: 100%; width:5em; border: none;margin: 0;}
+.button-area button{background: white; height: 100%; width:5.4em; border: none;margin: 0;}
 
 
 footer{color: white; font-weight: 200; line-height: 0.7em; font-size: 0.7em;}

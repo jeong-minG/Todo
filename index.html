@@ -15,14 +15,16 @@
     <div class="container">
         <h1>TO DO LIST</h1>
         <section class="input-area">
-            <input type="text" id="task-input" placeholder="할 일을 입력해주세요!" />
-            <button id="add-button"><i class="fa-solid fa-plus fa-lg"></i></button>
+            <input type="text" id="task-input" required>
+            <label>할 일을 입력해주세요</label>
+            <span></span>
+            <button id="add-button">ADD</button>
         </section>
 
         <section class="task-area">
             <div class="task-tabs">
-                <div id="under-line"></div>
-                <div id="all">ALL</div>
+                <!-- <div id="under-line"></div> -->
+                <div id="all" class="active">ALL</div>
                 <div id="ongoing">DOING</div>
                 <div id="done">DONE</div>
             </div>
